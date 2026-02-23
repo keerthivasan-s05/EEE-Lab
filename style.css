@@ -1,0 +1,166 @@
+/* =====================
+   CSS Variables
+===================== */
+:root {
+    --bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-dark: #1f2d3d;
+    --radius: 14px;
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+    /* Gradient colors */
+    --grad1: #0b3c5d;
+    --grad2: #145e8a;
+    --grad3: #4fa3d1;
+    --grad4: #1e81b0;
+}
+
+/* =====================
+   Global
+===================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    text-align: center;
+}
+
+/* =====================
+   Header with Animated Gradient
+===================== */
+header {
+    background: linear-gradient(
+        270deg,
+        var(--grad1),
+        var(--grad2),
+        var(--grad3),
+        var(--grad4)
+    );
+    background-size: 600% 600%;
+    animation: gradientShift 12s ease infinite;
+    color: white;
+    padding: 30px 15px;
+}
+
+header img {
+    max-width: 100%;
+    height: auto;
+    max-height: 180px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+/* =====================
+   Grid
+===================== */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    padding: 40px 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* =====================
+   Cards
+===================== */
+.card {
+    background: var(--card-bg);
+    padding: 30px 20px;
+    text-decoration: none;
+    color: var(--grad1);
+    font-weight: 600;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Animated gradient border */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(
+        270deg,
+        var(--grad1),
+        var(--grad3),
+        var(--grad4),
+        var(--grad2)
+    );
+    background-size: 500% 500%;
+    animation: gradientShift 8s linear infinite;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Hover lift */
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+}
+
+/* =====================
+   Footer
+===================== */
+footer {
+    background: linear-gradient(
+        270deg,
+        var(--grad4),
+        var(--grad2),
+        var(--grad1)
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 14s ease infinite;
+    color: white;
+    padding: 15px 10px;
+    font-size: 14px;
+}
+
+/* =====================
+   Animations
+===================== */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =====================
+   Mobile
+===================== */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    .card {
+        font-size: 16px;
+        padding: 24px 18px;
+    }
+}
